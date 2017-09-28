@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class Coins {
+	
+	public static void main(String[] args) {
+
+		// scanner provided for user input
+		Scanner scan = new Scanner(System.in);
+		
+		// create variable to hold amount of change
+		int change;
+		
+		// prompt user to enter an amount of change
+		System.out.println("Enter the amount of change (cents): ");
+		
+		// use scan.nextInt() to get amount of change from user and save it to change variable
+		change = scan.nextInt();
+		System.out.println(change);
+		
+		// call printCoins function to print amount of coins from the amount of change
+		
+	}
+
+	/* 
+	TODO:
+	Write a function called 'printCoins' that takes in an amount of change 
+	and then prints out the amount of quarters, dimes, and pennies needed 
+	to provide the necessary change.
+	
+	Ex: 67 cents is 2 quarters, 1 dime, and 7 pennies  
+	*/
+	
+	
+}

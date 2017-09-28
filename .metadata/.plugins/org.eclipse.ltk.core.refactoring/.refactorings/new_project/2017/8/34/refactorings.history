@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;EZ.java&apos; to &apos;ICS111L/src&apos;&#x0A;- Original project: &apos;new_project&apos;&#x0A;- Destination element: &apos;ICS111L/src&apos;&#x0A;- Original element: &apos;EZ.java&apos;" description="Copy compilation unit" destination="=ICS111L/src" element1="/src&lt;{EZ.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1503611700058" units="1" version="1.0"/>
+</session>

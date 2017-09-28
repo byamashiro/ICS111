@@ -1,0 +1,53 @@
+ICS 111
+8/23/17
+
+
+# Program flow, variables, and operators
+int, float, String, Long/Double, character (single individual character)
+
+-Variable names must be declared first or on the same line
+int age;
+float account;
+String name;
+
+int age = 3;
+float age = 3.2f; // the 'f' declares the input as a float, if not it will be pushed as a double
+String name = "Hello!" // keep in mind that String is a class and must be CAPITALIZED
+
+
+float distance = 4.5f:
+int year = 2017;
+String lastName = "Einstein";
+
+int X; // declare a variable called x of time int
+X = 2; /// assign 2 to X
+X = 4; // assign 4 to X
+X = 1; // assign 1 in X
+X = 999; // X is 999
+
+ACM General Meeting (POST:318B)
+Date: Wednesday, September 6
+Time: 5:00 - 7:00 pm
+
+
+Gray Hats
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;EZ.java&apos; to &apos;InClass/src/(default package)&apos;&#x0A;- Original project: &apos;BugRun&apos;&#x0A;- Destination element: &apos;InClass/src/(default package)&apos;&#x0A;- Original element: &apos;EZ.java&apos;" description="Copy compilation unit" destination="=InClass/src&lt;" element1="/src&lt;{EZ.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1504650775815" units="1" version="1.0"/>
+</session>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="/Users/bryanyamashiro/Downloads/Tarogotchi_reina"/>
+		<item value="/Users/bryanyamashiro/Documents/ICS111/ICS111"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="true" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="true" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value=""/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value="/Users/bryanyamashiro/Documents/ICS111/examples/Saberbouncer.zip"/>
+			<item value="/Users/bryanyamashiro/Documents/ICS111/examples/BugRun.zip"/>
+			<item value="/Users/bryanyamashiro/Documents/ICS111/examples/ClickAndPlay.zip"/>
+		</list>
+	</section>
+</section>

@@ -1,0 +1,74 @@
+import java.util.Scanner;
+
+public class PrintArrow {
+	
+	public static void main(String[] args) {
+		
+		// get desired arrow length from user. You will need make your own scanner this time.
+		
+		// print the arrow using printArrow
+		
+		// NOTE: It might help to start from the loopString function and be sure to test as you go!
+		
+		// NOTE: TODO means 'to-do' like a to-do list.
+		String test;
+		test = loopString(10, "t");
+		System.out.println(test);
+	}
+	
+	/*
+	TODO 3:
+	Finally write a function called printArrow that calls  
+	printArrowRow 5 times for each row of the arrow.
+	
+	Ex: An arrow with an input length of 7 should have the following output,
+		"       #"
+		"       ##"
+		"##########"
+		"       ##"
+		"       #"
+	*/
+	static void printArrow() {
+		
+	}
+
+	
+	
+	/*
+	TODO 2:
+	Write another function called printArrowRow that  
+	uses loopString to print a single row of the arrow. 
+	
+	Ex: The 2nd row down of an arrow of input length 3 should print this  "   ##"
+	    The 3nd row down of an arrow of input length 3 should print this  "#####"
+
+	HINT: Parameters may help to determine the number of spaces vs hashtags to print.
+	*/
+	public static void printArrowRow(int spaces, int hashes) {
+		
+		String space = loopString(spaces, " ");
+		String hash = loopString(hashes, "#");
+		return space + hash;
+		
+	}
+	
+	
+	/*
+	TODO 1:
+	Write a function called loopString to iteratively concatenate a string together a specified number of times.
+	
+	Ex: an input string "yo" and an input number of 4 should return the string "yoyoyoyo"
+	*/
+	public static String loopString(int a, String b) {
+		String s = "";
+		int i = 0;
+		while (i < a) {
+			s += b;
+			i++;
+		}
+		return s;
+	}
+
+	
+	
+}

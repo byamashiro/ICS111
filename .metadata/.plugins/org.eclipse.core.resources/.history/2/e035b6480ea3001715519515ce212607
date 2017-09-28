@@ -1,0 +1,13 @@
+import java.awt.Color;
+
+public class Parabola {
+
+	public static void main(String[] args) {
+		
+		// initialize EZ
+		
+		// iterate horizontally pixel by pixel and draw a parabola with small dots using function, f
+		
+	}
+	
+}

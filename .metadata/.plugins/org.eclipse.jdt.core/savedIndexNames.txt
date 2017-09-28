@@ -1,0 +1,11 @@
+INDEX VERSION 1.130+/Users/bryanyamashiro/Documents/ICS111/.metadata/.plugins/org.eclipse.jdt.core
+3870336603.index
+2959716130.index
+631078565.index
+4161783637.index
+2399562314.index
+2382868490.index
+538703993.index
+1835920505.index
+471647324.index
+1286680725.index
