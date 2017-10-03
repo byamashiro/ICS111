@@ -1,8 +1,8 @@
 import java.awt.Color;
 import java.io.FileReader;
 import java.util.Scanner;
-import java.util.Arrays;
-import java.util.Collections;
+// import java.util.Arrays;
+// import java.util.Collections;
 
 
 public class roombrah {
@@ -13,7 +13,7 @@ public class roombrah {
 		
 		
 		int posX = 100;		//0	// Stores the x position of the probe
-		int posY = 200;			// Stores the y position of the probe	
+		int posY = 100;			// Stores the y position of the probe	
 		int directionX = 1;		// Stores the x direction of the probe
 		int directionY = 1;		// Stores the y direction of the probe
 		int rotationAngle = 0;	// Stores the rotation angle of the probe
@@ -34,20 +34,24 @@ public class roombrah {
 		EZ.setBackgroundColor(new Color(0, 0,0)); 
 		
 		EZImage probePicture = EZ.addImage("probe.png", 0,0);
+		probePicture.scaleBy(0.3);
 		
-		int[] wallXLeft = new int[1000];
-		int[] wallYLeft = new int[1000];
+		int wallNo = 4000;
 		
-		int[] wallXRight = new int[1000];
-		int[] wallYRight = new int[1000];
+		int[] wallXLeft = new int[wallNo];
+		int[] wallYLeft = new int[wallNo];
 		
-		int[] wallXTop = new int[1000];
-		int[] wallYTop = new int[1000];
+		int[] wallXRight = new int[wallNo];
+		int[] wallYRight = new int[wallNo];
 		
-		int[] wallXBottom = new int[1000];
-		int[] wallYBottom = new int[1000];
+		int[] wallXTop = new int[wallNo];
+		int[] wallYTop = new int[wallNo];
 		
+		int[] wallXBottom = new int[wallNo];
+		int[] wallYBottom = new int[wallNo];
 		
+		// EZImage[] wallArray = new EZImage[200];
+
 		for(int row = 0; row < height; row++){
 			
 			inputText = fileScanner.nextLine();
@@ -60,29 +64,36 @@ public class roombrah {
 		
 				switch(ch){
 					case 'W':
-						EZImage wallPlacement = EZ.addImage("dirt.png",column*32,row*32);
-						wallXLeft[counter] = wallPlacement.getXCenter() - 16;
-						wallYLeft[counter] = wallPlacement.getYCenter();
-
-						wallXRight[counter] = wallPlacement.getXCenter() + 16;
-						wallYRight[counter] = wallPlacement.getYCenter();
+						// wallArray[counter] = EZ.addImage("dirt.png",column*32,row*32);
 						
-						wallXTop[counter] = wallPlacement.getXCenter();
-						wallYTop[counter] = wallPlacement.getYCenter() + 16;
+						EZImage wallPlacement = EZ.addImage("dirt.png",column*32,row*32);
 
-						wallXBottom[counter] = wallPlacement.getXCenter();
-						wallYBottom[counter] = wallPlacement.getYCenter() - 16;
+						for (int j=0; j<=32; j++) {
+							wallXLeft[counter] = wallPlacement.getXCenter() - 16;
+							wallYLeft[counter] = wallPlacement.getYCenter() + j - 16;
+
+							wallXRight[counter] = wallPlacement.getXCenter() + 16;
+							wallYRight[counter] = wallPlacement.getYCenter() + j - 16;
+							
+							wallXTop[counter] = wallPlacement.getXCenter() + j - 16 ;
+							wallYTop[counter] = wallPlacement.getYCenter() + 16;
+
+							wallXBottom[counter] = wallPlacement.getXCenter() + j - 16 ;
+							wallYBottom[counter] = wallPlacement.getYCenter() - 16;
+							
+							counter++;
+						}
+
 
 						
 						// System.out.println("width: " + wallPlacement.getWidth());
 						// System.out.println("height: " + wallPlacement.getHeight());
-
-						counter++;
+						
+						
 						break;	
 						
 					case 'D':
 						EZ.addImage("grass.png",column*32,row*32);
-						
 						
 						break;
 					/*
@@ -98,22 +109,17 @@ public class roombrah {
 			} 
 		}
 		
-		/*
-		for (int i=0; i<counter; i++) {
-			System.out.println(wallX[i] + ", " + wallY[i]);
-		}
-		*/
-		
 
 		
 		while(true){
+			posX = posX + directionX;
+			posY = posY + directionY;
 			
 			probePicture.translateTo(posX, posY); // Set the position of the probe.
 
 			// probePicture.rotateTo(rotationAngle); // Set the rotation angle of the probe.
 								
-			posX = posX+directionX;
-			posY = posY+directionY;
+
 			
 			// System.out.println(posX + ", " + posY + ", " + "outside");
 			
@@ -127,26 +133,17 @@ public class roombrah {
 				directionX = -directionX;
 			}
 			*/
-			
-			int probe_top = posY + 1;
-			int probe_bottom = posY - 1;
-			int probe_left = posX - 1;
-			int probe_right = posX + 1;
-			
-			for (int i = 0; i < 200; i++ ) {
 
+			System.out.println(posX + ", " + posY);
+			for (int i = 0; i < wallNo; i++ ) {
 				
-				if (probePicture.isPointInElement( wallXLeft[i], wallYLeft[i]  ) || probePicture.isPointInElement( wallXRight[i], wallYRight[i]  )) { // 	if (probePicture.isPointInElement( wallX[i], wallY[i]  ) ) {
-					// System.out.println("I AM BEING TRIGGERED");
+				if ( probePicture.isPointInElement( wallXLeft[i], wallYLeft[i]  ) || probePicture.isPointInElement( wallXRight[i], wallYRight[i] ) ) { // 	if (probePicture.isPointInElement( wallX[i], wallY[i]  ) ) {
 					directionX = -directionX;
-					
-					// if (wallX[0] )
-					
-				} else if (probePicture.isPointInElement( wallXTop[i], wallYTop[i]  ) || probePicture.isPointInElement( wallXBottom[i], wallYBottom[i]  )) {
+					break;
+				} else if ( probePicture.isPointInElement( wallXTop[i], wallYTop[i]  ) || probePicture.isPointInElement( wallXBottom[i], wallYBottom[i] ) ) {
 					directionY = -directionY;
-
+					break;
 				}
-				
 				
 			}
 			
@@ -165,13 +162,14 @@ public class roombrah {
 //			if ((posX > 700) || (posX < 0)) {
 //				directionX = -directionX;
 //			}
-			
+			/*
 			if (posY > 600 ) {		// if the ball reaches all the way to the bottom reset it to the top
 				posY=0;
 			}
 			if (posY < 0) {
 				directionY = -directionY;
 			}
+			*/
 			
 			if (EZInteraction.isKeyDown('d')) {
 				saberX+=10;
