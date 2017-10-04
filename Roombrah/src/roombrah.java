@@ -35,8 +35,9 @@ public class roombrah {
 		
 		EZImage probePicture = EZ.addImage("probe.png", 0,0);
 		probePicture.scaleBy(0.3);
+		System.out.println(probePicture.getWorldWidth());
 		
-		int wallNo = 4000;
+		int wallNo = 300;
 		
 		int[] wallXLeft = new int[wallNo];
 		int[] wallYLeft = new int[wallNo];
@@ -52,6 +53,11 @@ public class roombrah {
 		
 		// EZImage[] wallArray = new EZImage[200];
 
+		int[] blockX = new int[wallNo];
+		int[] blockY = new int[wallNo];
+		
+		EZImage[] wallBlock = new EZImage[wallNo];
+		
 		for(int row = 0; row < height; row++){
 			
 			inputText = fileScanner.nextLine();
@@ -65,10 +71,16 @@ public class roombrah {
 				switch(ch){
 					case 'W':
 						// wallArray[counter] = EZ.addImage("dirt.png",column*32,row*32);
+						// EZImage wallPlacement = EZ.addImage("dirt.png",column*32,row*32);
 						
-						EZImage wallPlacement = EZ.addImage("dirt.png",column*32,row*32);
-
-						for (int j=0; j<=32; j++) {
+						
+						wallBlock[counter] = EZ.addImage("dirt.png",column*32,row*32);
+						System.out.println("wall center: " + wallBlock[counter].getWorldXCenter() + ", " + wallBlock[counter].getWorldYCenter());
+						
+						counter++;
+						
+						/*
+						for (int j=0; j<=32; j++) { // This code works for when the wall is the modifier
 							wallXLeft[counter] = wallPlacement.getXCenter() - 16;
 							wallYLeft[counter] = wallPlacement.getYCenter() + j - 16;
 
@@ -83,9 +95,8 @@ public class roombrah {
 							
 							counter++;
 						}
+						*/
 
-
-						
 						// System.out.println("width: " + wallPlacement.getWidth());
 						// System.out.println("height: " + wallPlacement.getHeight());
 						
@@ -117,12 +128,28 @@ public class roombrah {
 			
 			probePicture.translateTo(posX, posY); // Set the position of the probe.
 
-			// probePicture.rotateTo(rotationAngle); // Set the rotation angle of the probe.
-								
+			
+			int posXLeft = probePicture.getWorldXCenter() - 8;
+			int posYLeft = probePicture.getWorldYCenter();
+			System.out.println("left: " + posXLeft + " " + posYLeft);
+
+			int posXRight = probePicture.getWorldXCenter() + 8;
+			int posYRight = probePicture.getWorldYCenter();
+			System.out.println("right: " + posXRight + " " + posYRight);
 
 			
+			int posXTop = probePicture.getWorldXCenter();
+			int posYTop = probePicture.getWorldYCenter() + 8;
+			System.out.println("top: " + posXTop + " " + posYTop);
+
+
+			int posXBottom = probePicture.getWorldXCenter();
+			int posYBottom = probePicture.getWorldYCenter() - 8;
+			System.out.println("bottom: " + posXBottom + " " + posYBottom);
+
+
+			// probePicture.rotateTo(rotationAngle); // Set the rotation angle of the probe.
 			// System.out.println(posX + ", " + posY + ", " + "outside");
-			
 			// rotationAngle+=directionX;
 
 			/*
@@ -133,10 +160,20 @@ public class roombrah {
 				directionX = -directionX;
 			}
 			*/
+			System.out.println("array length: " + wallBlock.length);
 
 			System.out.println(posX + ", " + posY);
+			
 			for (int i = 0; i < wallNo; i++ ) {
+				// System.out.println(wallBlock[i]);
+				if (wallBlock[i].isPointInElement(posXLeft, posYLeft) || wallBlock[i].isPointInElement(posXRight, posYRight)) {
+					directionX = -directionX;
+				} else if (wallBlock[i].isPointInElement(posXTop, posYTop) || wallBlock[i].isPointInElement(posXBottom, posYBottom)) {
+					directionY = -directionY;
+				}
 				
+				
+				/*
 				if ( probePicture.isPointInElement( wallXLeft[i], wallYLeft[i]  ) || probePicture.isPointInElement( wallXRight[i], wallYRight[i] ) ) { // 	if (probePicture.isPointInElement( wallX[i], wallY[i]  ) ) {
 					directionX = -directionX;
 					break;
@@ -144,7 +181,7 @@ public class roombrah {
 					directionY = -directionY;
 					break;
 				}
-				
+				*/
 			}
 			
 			/*
