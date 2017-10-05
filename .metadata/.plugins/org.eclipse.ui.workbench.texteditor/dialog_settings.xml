@@ -2,12 +2,16 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="growth" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="-1"/>
+			<item value="probepic"/>
+			<item value="counter"/>
+			<item value="direction"/>
 			<item value="growth"/>
 			<item value="wheel"/>
 			<item value="playerFunc"/>
@@ -19,10 +23,6 @@
 			<item value="pic_manure"/>
 			<item value="pic_manure_1"/>
 			<item value="water_line"/>
-			<item value="plant_bar"/>
-			<item value="water_line_2"/>
-			<item value="plant_line"/>
-			<item value="plant_int"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -32,6 +32,6 @@
 		<item value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont" key="DIALOG_FONT_NAME"/>
 		<item value="409" key="DIALOG_HEIGHT"/>
 		<item value="808" key="DIALOG_X_ORIGIN"/>
-		<item value="0" key="DIALOG_Y_ORIGIN"/>
+		<item value="135" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -37,6 +37,7 @@
 		<item value="true" key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID"/>
 		<item value="true" key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="/Users/bryanyamashiro/Documents/ICS111/export/Lab_6_BY.zip"/>
 			<item value="/Users/bryanyamashiro/Documents/ICS111/export/Lab_5_BY.zip"/>
 			<item value="/Users/bryanyamashiro/Documents/ICS111/export/Project_1_BY.zip"/>
 			<item value="/Users/bryanyamashiro/Documents/ICS111/export/Lab_4_BY.zip"/>
