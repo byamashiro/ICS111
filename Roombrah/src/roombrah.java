@@ -131,8 +131,9 @@ public class roombrah {
 					directionX = -directionX;
 				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+8) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-8)) {
 					directionY = -directionY;
-				
-			}
+				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+8) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-8)) {
+					
+				}
 				
 			if (EZInteraction.isKeyDown('d')) {
 				saberX+=10;
