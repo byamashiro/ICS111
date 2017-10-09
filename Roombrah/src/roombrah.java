@@ -56,7 +56,7 @@ public class roombrah {
 		
 		EZImage probePicture = EZ.addImage("probe.png", 0,0);
 		probePicture.scaleBy(0.3);
-		System.out.println(probePicture.getWorldWidth());
+		// System.out.println(probePicture.getWorldWidth());
 		
 		
 		int countWall = countWallBlock();
@@ -66,7 +66,7 @@ public class roombrah {
 		
 		for(int row = 0; row < height; row++){
 			inputText = fileScanner.nextLine();
-			System.out.println(inputText);
+			// System.out.println(inputText);
 			
 			for (int column = 0; column < inputText.length(); column++){
 				
@@ -75,7 +75,7 @@ public class roombrah {
 				switch(ch){
 					case 'W':
 						wallBlock[counter] = EZ.addImage("dirt.png",column*32,row*32);
-						System.out.println("wall center: " + wallBlock[counter].getWorldXCenter() + ", " + wallBlock[counter].getWorldYCenter());
+						// System.out.println("wall center: " + wallBlock[counter].getWorldXCenter() + ", " + wallBlock[counter].getWorldYCenter());
 						counter++;
 						break;	
 						
@@ -102,9 +102,12 @@ public class roombrah {
 			int[] probePointsX = new int[360];
 			int[] probePointsY = new int[360];
 			
-			for (int i = 0; i > 360 ; i++) {
-				probePointsX[i] = (int) (probePicture.getWorldXCenter() + (17*Math.cos(i)));
-				probePointsY[i] = (int) (probePicture.getWorldYCenter() + (17*Math.sin(i)));
+			for (int i = 0; i < 360 ; i++) {
+				double rad = Math.toRadians(i);
+				// System.out.println("radians: " + rad);
+				probePointsX[i] = (int) (probePicture.getWorldXCenter() + (16*Math.cos(rad)));
+				probePointsY[i] = (int) (probePicture.getWorldYCenter() + (16*Math.sin(rad)));
+				// System.out.println("probe X: " + probePointsX[i] + " probe Y: " + probePointsY[i] );
 			}
 			
 			
@@ -119,6 +122,30 @@ public class roombrah {
 			*/
 			
 			for (int i = 0; i < wallBlock.length; i++ ) {
+				
+				for (int j=0; j<360; j++) {
+					if ( (j>=0 && j<=45) || (j>=136 && j<=224) || (j>=316 && j<=359) ) {
+						if (wallBlock[i].isPointInElement(probePointsX[j], probePointsY[j])) {
+							directionX = -directionX;
+						}
+					} else if ( (j>=46 && j<=134) || (j>=226 && j<=314) ) {
+						if (wallBlock[i].isPointInElement(probePointsX[j], probePointsY[j])) {
+							directionY = -directionY;
+						}
+					} else if ( (j==45) || (j==135) || (j==225) || (j==315) ) {
+						if (wallBlock[i].isPointInElement(probePointsX[j], probePointsY[j])) {
+							directionY = -directionY;
+							directionX = -directionX;
+						}
+					}
+					
+					
+					
+					
+					
+				}
+				
+				
 				// System.out.println(wallBlock[i]);
 				/*
 				for (int j = 0; j<360; j++) {
@@ -127,6 +154,8 @@ public class roombrah {
 					} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+8) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-8)) {
 						directionY = -directionY;				}
 				*/
+				
+				/*//working code
 				if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter()+8, probePicture.getWorldYCenter()) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter()-8, probePicture.getWorldYCenter())) {
 					directionX = -directionX;
 				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+8) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-8)) {
@@ -134,6 +163,9 @@ public class roombrah {
 				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+8) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-8)) {
 					
 				}
+				*/
+				
+				
 				
 			if (EZInteraction.isKeyDown('d')) {
 				saberX+=10;
