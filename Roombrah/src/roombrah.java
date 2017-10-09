@@ -109,18 +109,7 @@ public class roombrah {
 				probePointsY[i] = (int) (probePicture.getWorldYCenter() + (16*Math.sin(rad)));
 				// System.out.println("probe X: " + probePointsX[i] + " probe Y: " + probePointsY[i] );
 			}
-			
-			
 
-			// System.out.println("array length: " + wallBlock.length);
-			// System.out.println(posX + ", " + posY);
-			
-			/*
-			for (int i = 0; i<wallBlock.length; i++) {
-				System.out.println("no. blocks: " + wallBlock[i]);
-			}
-			*/
-			
 			for (int i = 0; i < wallBlock.length; i++ ) {
 				
 				for (int j=0; j<360; j++) {
