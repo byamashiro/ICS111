@@ -105,15 +105,16 @@ public class roombrah {
 			for (int i = 0; i < 360 ; i++) {
 				double rad = Math.toRadians(i);
 				// System.out.println("radians: " + rad);
-				probePointsX[i] = (int) (probePicture.getWorldXCenter() + (16*Math.cos(rad)));
+				probePointsX[i] = (int) (probePicture.getWorldXCenter() + (16*Math.cos(rad))); // tried lower values for r, originally 17 for predictive hits
 				probePointsY[i] = (int) (probePicture.getWorldYCenter() + (16*Math.sin(rad)));
 				// System.out.println("probe X: " + probePointsX[i] + " probe Y: " + probePointsY[i] );
 			}
+			
 
 			for (int i = 0; i < wallBlock.length; i++ ) {
 				
 				for (int j=0; j<360; j++) {
-					if ( (j>=0 && j<=45) || (j>=136 && j<=224) || (j>=316 && j<=359) ) {
+					if ( (j>=0 && j<=45) || (j>=136 && j<=224) || (j>=316 && j<=359) ) { // change to possibly 3 points per quadrant instead
 						if (wallBlock[i].isPointInElement(probePointsX[j], probePointsY[j])) {
 							directionX = -directionX;
 						}
@@ -127,11 +128,6 @@ public class roombrah {
 							directionX = -directionX;
 						}
 					}
-					
-					
-					
-					
-					
 				}
 				
 				
