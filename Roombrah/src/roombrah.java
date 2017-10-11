@@ -112,7 +112,7 @@ public class roombrah {
 			
 
 			for (int i = 0; i < wallBlock.length; i++ ) {
-				
+				/*
 				for (int j=0; j<360; j++) {
 					if ( (j==0) || (j==30)  || (j==150) || (j==180) || (j==210) || (j==330) ) { // change to possibly 3 points per quadrant instead
 						if (wallBlock[i].isPointInElement(probePointsX[j], probePointsY[j])) {
@@ -129,8 +129,8 @@ public class roombrah {
 						}
 					}
 				}
-				
-				/*//will create 360 points around the roomba, very slow
+				*/
+				//will create 360 points around the roomba, very slow
 				for (int j=0; j<360; j++) {
 					if ( (j>=0 && j<=45) || (j>=136 && j<=224) || (j>=316 && j<=359) ) { // change to possibly 3 points per quadrant instead
 						if (wallBlock[i].isPointInElement(probePointsX[j], probePointsY[j])) {
@@ -147,7 +147,7 @@ public class roombrah {
 						}
 					}
 				}
-				/*
+				
 				
 				// System.out.println(wallBlock[i]);
 				/*
