@@ -114,7 +114,7 @@ public class roombrah {
 			for (int i = 0; i < wallBlock.length; i++ ) {
 				/*
 				for (int j=0; j<360; j++) {
-					if ( (j==0) || (j==30)  || (j==150) || (j==180) || (j==210) || (j==330) ) { // change to possibly 3 points per quadrant instead
+					if ( (j==0) || (j==30)  || (j==150) || (j==180) || (j==210) || (j==330) ) { // sets up points in the four quadrants
 						if (wallBlock[i].isPointInElement(probePointsX[j], probePointsY[j])) {
 							directionX = -directionX;
 						}
