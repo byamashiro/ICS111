@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.util.Scanner;
 // import java.util.Arrays;
 // import java.util.Collections;
-
+import java.util.*;
 
 // STILL UNDER DEVELOPMENT AS OF 10/15/2017, NOT USED FOR MILESTONE 1.
 public class roombrahRemastered {
@@ -151,6 +151,10 @@ public class roombrahRemastered {
 		int laserFinal = 0;
 		int deg = 0;
 
+		int countDiamonds = 0;
+		// Set<Integer> setX = new HashSet<Integer>();
+		// Set<Integer> setY = new HashSet<Integer>();
+		Set<EZImage> setBlock = new HashSet<EZImage>();
 		
 		while(diamondRemainder > 0) { // AI
 			// counterCirc++;
@@ -181,7 +185,6 @@ public class roombrahRemastered {
 				} 
 			}
 			*/
-			
 			for (int i=0; i<diamondnullBlock.length;i++) {
 				if (diamondnullBlock[i].isPointInElement(laser.getX2(), laser.getY2())) {
 					// laser.setPoint2(laser.getX2()+17, laser.getY2());
@@ -190,21 +193,68 @@ public class roombrahRemastered {
 					// laserCount++;
 					// laserFinal = laserCount-1;
 					laser.hide();
+					for (int j=0;j<diamondBlock.length;j++) {
+						if (  (diamondBlock[j].getWorldXCenter() == diamondnullBlock[i].getWorldXCenter()) && (diamondBlock[j].getWorldYCenter() == diamondnullBlock[i].getWorldYCenter())  ) {
+							// setX.add(diamondBlock[j].getWorldXCenter());
+							// setY.add(diamondBlock[j].getWorldYCenter());
+							setBlock.add(diamondBlock[j]);
+
+							countDiamonds++;
+						}
+					}
 
 				} 
 			}
-			
 			// laserCount++;
 			for (int i=0; i<wallBlock.length;i++) {
 				if (wallBlock[i].isPointInElement(laser.getX2(), laser.getY2())) {
-					deg += 10;
+					deg += 5;
 					laserX=17;
-					System.out.println("Changed Degree: " + deg);
+					// System.out.println("Changed Degree: " + deg);
 					laserCount = 0;
 					laser.hide();
 				}
 			} // need to put export statement here
+			
+			
+			if (deg == 360) {
+				int distHolder = 0;
+				int distIndex = 0;
+				int distance = 0;
+				
+				System.out.println("Detected Diamonds: " + countDiamonds);
+				System.out.println("Corrected Diamond Length: " + setBlock.size());
+				deg = 0;
+				EZImage[] arrBlock = setBlock.toArray(new EZImage[setBlock.size()]);
+				
+				// distance formula d = sqrt( (x-pointx)^2 + (y-pointy)^2 )
+				for (int i=0; i<arrBlock.length; i++) {
+					System.out.println("Element Dimensions [" + i + "]: (" + arrBlock[i].getWorldXCenter() + ", " + arrBlock[i].getWorldYCenter() + ")");
+					distance = (int) Math.sqrt(  Math.pow(( probePicture.getWorldXCenter() - arrBlock[i].getWorldXCenter() ), 2)  + Math.pow(( probePicture.getWorldYCenter() - arrBlock[i].getWorldYCenter() ), 2)  );
+					if (distHolder == 0) {
+						distHolder = distance;
+					} else if (distance < distHolder) {
+						distHolder = distance;
+						distIndex = i;
+					}
+					System.out.println("Distance to element [" + i +"] is: " + distance );
+				}
+				System.out.println("The closest distance is the element index: " + distIndex + "    Distance: " + distHolder);
+				System.out.println("Current position of Roomba: (" + probePicture.getWorldXCenter() + ", " + probePicture.getWorldYCenter() + ")");
+				
+				int diffX = probePicture.getWorldXCenter() - arrBlock[distIndex].getWorldXCenter();
+				int diffY = probePicture.getWorldYCenter() - arrBlock[distIndex].getWorldYCenter();
+				
+				if (Math.abs(diffX) > Math.abs(diffY)) {
+					for (int i=0; i< Math.abs(diffX); i++) {
+						// making slope for the roomba moving to blocks, but takes the difference of the x1 x2, and y1 y2 points, and also there must be an iteration of 1 per step, therefore the idea was to normalize off of the large absolute value
+					}
+				}
 
+				break;
+
+
+			}
 			
 			/*// slow version of scanning
 			if (laserCount == 50) {
