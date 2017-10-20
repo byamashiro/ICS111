@@ -74,6 +74,8 @@ public class wallMilestone1 {
 		// Print number of wall blocks and diamond blocks (diamond and dirt are used for the same element)
 		System.out.println("Total number of wall blocks: " + countWall);
 		System.out.println("Total number of diamond blocks: " + countDiamond);
+		
+		System.out.println("Dimensions: " + width + " x " + height + " Total Blocks: " + (width*height));
 	}
 }
 
