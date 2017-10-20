@@ -189,21 +189,21 @@ public class roombrahRemastered {
 					diamondnullBlock[i].setColor(Color.red);
 					// laserCount++;
 					// laserFinal = laserCount-1;
+					laser.hide();
+
 				} 
 			}
 			
 			// laserCount++;
-			if (deg < 360) {
-				for (int i=0; i<wallBlock.length;i++) {
-					if (wallBlock[i].isPointInElement(laser.getX2(), laser.getY2())) {
-						laser.hide();
-						deg += 10;
-						laserX=17;
-						System.out.println("Changed Degree: " + deg);
-						laserCount = 0;
-					}
-				} // need to put export statement here
-			}
+			for (int i=0; i<wallBlock.length;i++) {
+				if (wallBlock[i].isPointInElement(laser.getX2(), laser.getY2())) {
+					deg += 10;
+					laserX=17;
+					System.out.println("Changed Degree: " + deg);
+					laserCount = 0;
+					laser.hide();
+				}
+			} // need to put export statement here
 
 			
 			/*// slow version of scanning
