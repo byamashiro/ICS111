@@ -1,10 +1,10 @@
 
-public class roombrah {
+public class roombaC {
 	String name;
 	int pop;
 	float popRho;
 
-	public roombrah(String a, int b, float c) {
+	public roombaC(String a, int b, float c) {
 		name = a;
 		pop = b;
 		popRho = c;

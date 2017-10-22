@@ -1,9 +1,15 @@
 import java.awt.Color;
+
 import java.io.FileReader;
 import java.util.Scanner;
 // import java.util.Arrays;
 // import java.util.Collections;
 import java.util.*;
+import java.util.Arrays;
+// import org.apache.commons.lang.ArrayUtil;
+import org.apache.commons.*;
+import org.apache.commons.lang3.ArrayUtils; 
+
 
 // STILL UNDER DEVELOPMENT AS OF 10/15/2017, NOT USED FOR MILESTONE 1.
 public class roombrahRemastered {
@@ -61,6 +67,7 @@ public class roombrahRemastered {
 	
 	public static void main(String[] args) throws java.io.IOException {
 		soundsEZ();
+		
 		int posX = 200;		//0	// Stores the x position of the probe
 		int posY = 100;			// Stores the y position of the probe	
 		int directionX = 1;		// Stores the x direction of the probe
@@ -127,7 +134,7 @@ public class roombrahRemastered {
 						break;
 
 					default:
-						nullBlock[counterNull] = EZ.addRectangle(column*32+16, row*32+16, 32, 32, Color.gray, true);
+						// nullBlock[counterNull] = EZ.addRectangle(column*32+16, row*32+16, 32, 32, Color.gray, true);
 						diamondnullBlock[counterDiamondNull] = EZ.addRectangle(column*32+16, row*32+16, 32, 32, Color.blue, false);
 						counterNull++;
 						counterDiamondNull++;
@@ -144,225 +151,8 @@ public class roombrahRemastered {
 		System.out.println("Total number of diamond blocks: " + countDiamond);
 		System.out.println("Total number of null blocks: " + countNull);
 		System.out.println("Total Discovery: " + (countWall+countDiamond+countNull));
-		int laserX = 17; // posX+17;
-		int laserY = 0;
 		
-		int laserCount = 0;
-		int laserFinal = 0;
-		int deg = 0;
 
-		int countDiamonds = 0;
-		// Set<Integer> setX = new HashSet<Integer>();
-		// Set<Integer> setY = new HashSet<Integer>();
-		Set<EZImage> setBlock = new HashSet<EZImage>();
-		
-		while(diamondRemainder > 0) { // AI
-			// counterCirc++;
-			
-			posX = posX + 0; // directionX;
-			posY = posY + 0; // directionY;
-			
-			probePicture.pullToFront();
-			if (counterCirc == 5) {
-				EZ.addCircle(probePicture.getWorldXCenter(), probePicture.getWorldYCenter(), probePicture.getWorldWidth(), probePicture.getWorldHeight(), new Color(224, 224, 224, 10), true).pushToBack();
-				counterCirc = 0;
-			}
-			
-			probePicture.translateTo(posX, posY); // Set the position of the probe.
-			
-			double rad = Math.toRadians(deg);
-			
-			EZLine laser = EZ.addLine(probePicture.getWorldXCenter(), probePicture.getWorldYCenter(), (int) (probePicture.getWorldXCenter() + (laserX*Math.cos(rad))),  (int) (probePicture.getWorldYCenter() + (laserX*Math.sin(rad))), Color.red, 5);
-
-			/*// only null blocks
-			for (int i=0; i<nullBlock.length;i++) {
-				if (nullBlock[i].isPointInElement(laser.getX2(), laser.getY2())) {
-					// laser.setPoint2(laser.getX2()+17, laser.getY2());
-					laserX += 17;
-					nullBlock[i].setColor(Color.black);
-					laserCount++;
-					// laserFinal = laserCount-1;
-				} 
-			}
-			*/
-			for (int i=0; i<diamondnullBlock.length;i++) {
-				if (diamondnullBlock[i].isPointInElement(laser.getX2(), laser.getY2())) {
-					// laser.setPoint2(laser.getX2()+17, laser.getY2());
-					laserX += 17;
-					diamondnullBlock[i].setColor(Color.red);
-					// laserCount++;
-					// laserFinal = laserCount-1;
-					laser.hide();
-					for (int j=0;j<diamondBlock.length;j++) {
-						if (  (diamondBlock[j].getWorldXCenter() == diamondnullBlock[i].getWorldXCenter()) && (diamondBlock[j].getWorldYCenter() == diamondnullBlock[i].getWorldYCenter())  ) {
-							// setX.add(diamondBlock[j].getWorldXCenter());
-							// setY.add(diamondBlock[j].getWorldYCenter());
-							setBlock.add(diamondBlock[j]);
-
-							countDiamonds++;
-						}
-					}
-
-				} 
-			}
-			// laserCount++;
-			for (int i=0; i<wallBlock.length;i++) {
-				if (wallBlock[i].isPointInElement(laser.getX2(), laser.getY2())) {
-					deg += 5;
-					laserX=17;
-					// System.out.println("Changed Degree: " + deg);
-					laserCount = 0;
-					laser.hide();
-				}
-			} // need to put export statement here
-			
-			
-			if (deg == 360) {
-				int distHolder = 0;
-				int distIndex = 0;
-				int distance = 0;
-				
-				System.out.println("Detected Diamonds: " + countDiamonds);
-				System.out.println("Corrected Diamond Length: " + setBlock.size());
-				deg = 0;
-				EZImage[] arrBlock = setBlock.toArray(new EZImage[setBlock.size()]);
-				
-				// distance formula d = sqrt( (x-pointx)^2 + (y-pointy)^2 )
-				for (int i=0; i<arrBlock.length; i++) {
-					System.out.println("Element Dimensions [" + i + "]: (" + arrBlock[i].getWorldXCenter() + ", " + arrBlock[i].getWorldYCenter() + ")");
-					distance = (int) Math.sqrt(  Math.pow(( probePicture.getWorldXCenter() - arrBlock[i].getWorldXCenter() ), 2)  + Math.pow(( probePicture.getWorldYCenter() - arrBlock[i].getWorldYCenter() ), 2)  );
-					if (distHolder == 0) {
-						distHolder = distance;
-					} else if (distance < distHolder) {
-						distHolder = distance;
-						distIndex = i;
-					}
-					System.out.println("Distance to element [" + i +"] is: " + distance );
-				}
-				System.out.println("The closest distance is the element index: " + distIndex + "    Distance: " + distHolder);
-				System.out.println("Current position of Roomba: (" + probePicture.getWorldXCenter() + ", " + probePicture.getWorldYCenter() + ")");
-				
-				int diffX = probePicture.getWorldXCenter() - arrBlock[distIndex].getWorldXCenter();
-				int diffY = probePicture.getWorldYCenter() - arrBlock[distIndex].getWorldYCenter();
-				
-				if (Math.abs(diffX) > Math.abs(diffY)) {
-					for (int i=0; i< Math.abs(diffX); i++) {
-						// making slope for the roomba moving to blocks, but takes the difference of the x1 x2, and y1 y2 points, and also there must be an iteration of 1 per step, therefore the idea was to normalize off of the large absolute value
-					}
-				}
-
-				break;
-
-
-			}
-			
-			/*// slow version of scanning
-			if (laserCount == 50) {
-				laser.hide();
-				deg += 10;
-				laserX=17;
-				System.out.println("Changed Degree: " + deg);
-				laserCount = 0;
-			}
-			*/
-			
-			// System.out.println("Count: " + laserCount + "   " + "Laser Final: " + laserFinal);
-			
-			//if (laserCount == )			
-			// laserX = 17;
-			// System.out.println("Degree: " + deg);
-			
-			
-			
-			
-			
-			
-			/*
-			for (int j=0;j<360;j++) {
-				// EZLine laser = EZ.addLine(posX, posY, laserX, laserY, Color.red, 5);
-				double rad = Math.toRadians(j);
-				int laserX = 17;
-
-				
-				for (int i=0; i<nullBlock.length;i++) {
-					EZLine laser = EZ.addLine(posX, posY, (int) (probePicture.getWorldXCenter() + (laserX*Math.cos(rad))),  (int) (probePicture.getWorldYCenter() + (laserX*Math.sin(rad))), Color.red, 5);
-
-					if (nullBlock[i].isPointInElement(laser.getX2(), laser.getY2())) {
-						laserX += 17;
-						nullBlock[i].setColor(Color.black);
-					}
-					EZ.refreshScreen();
-				}
-			}
-			*/
-			
-			/*
-			for (int i = 0; i < 360 ; i++) {
-				double rad = Math.toRadians(i);
-				// System.out.println("radians: " + rad);
-				probePointsX[i] = (int) (probePicture.getWorldXCenter() + (16*Math.cos(rad))); // tried lower values for r, originally 17 for predictive hits
-				probePointsY[i] = (int) (probePicture.getWorldYCenter() + (16*Math.sin(rad)));
-				// System.out.println("probe X: " + probePointsX[i] + " probe Y: " + probePointsY[i] );
-			}
-			*/
-			// if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter()+1, probePicture.getWorldYCenter()) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-1)) {
-
-			
-			
-
-			
-			
-			for (int i = 0; i < diamondBlock.length; i++) {
-				if (diamondBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter())) {
-					diamondSound.play();
-					diamondBlock[i].translateTo(0, 0);
-					diamondRemainder--;
-					System.out.println(diamondRemainder + " Diamonds Remaining.");
-				}
-			}
-			
-
-			for (int i = 0; i < wallBlock.length; i++ ) {
-				// diagonal collisions
-				if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter()+1, probePicture.getWorldYCenter()) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-1)) {
-					directionY = -directionY; // quadrant 1
-					directionX = -directionX;
-					wallSound.play();
-				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-1) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter()-1, probePicture.getWorldYCenter())) {
-					directionY = -directionY; // quadrant 2
-					directionX = -directionX;
-					wallSound.play();
-				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter()-1, probePicture.getWorldYCenter()) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+1)) {
-					directionY = -directionY; // quadrant 3
-					directionX = -directionX;
-					wallSound.play();
-				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+1) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter()+1, probePicture.getWorldYCenter())) {
-					directionY = -directionY; //quadrant 4
-					directionX = -directionX;
-					wallSound.play();
-				}
-				
-				// top, bottom, left, right
-				else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter()+1, probePicture.getWorldYCenter()) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter()-1, probePicture.getWorldYCenter())) {
-					directionX = -directionX;
-					wallSound.play();
-				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+1) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-1)) {
-					directionY = -directionY;
-					wallSound.play();
-				}
-				
-				
-				
-
-
-			
-			}
-			EZ.refreshScreen();
-		}
-		
-		
-		
-		/*
 		while(diamondRemainder > 0){
 			counterCirc++;
 
@@ -426,7 +216,7 @@ public class roombrahRemastered {
 			EZ.refreshScreen();
 			
 		}
-		*/
+		
 		
 		applauseSound.play();
 	}
