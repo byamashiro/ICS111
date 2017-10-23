@@ -1,3 +1,4 @@
+package deprecated;
 
 public class IslandMain {
 

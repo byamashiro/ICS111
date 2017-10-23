@@ -1,3 +1,4 @@
+package deprecated;
 import java.awt.Color;
 
 import java.io.FileReader;
@@ -8,12 +9,18 @@ import java.util.*;
 import java.util.Arrays;
 // import org.apache.commons.lang.ArrayUtil;
 import org.apache.commons.*;
-import org.apache.commons.lang3.ArrayUtils; 
+import org.apache.commons.lang3.ArrayUtils;
+
+import EZ;
+import EZImage;
+import EZSound;
+import roombrah; 
 
 
-// STILL UNDER DEVELOPMENT AS OF 10/15/2017, NOT USED FOR MILESTONE 1.
+// Milestone 2
 public class roombrahRemastered {
 	
+	// Initialized variables
 	static EZSound applauseSound;
 	static EZSound wallSound;
 	static EZSound diamondSound;
@@ -24,16 +31,16 @@ public class roombrahRemastered {
 	static int counterCirc = 0;
 	static int counterDiamondNull = 0;
 
-
 	static int[] countElements = new int[4]; // initialize counter array for walls and dirt patches
 	
 	
-	static void soundsEZ() {
+	static void soundsEZ() { // function for loading sound files
 		applauseSound = EZ.addSound("applause.wav");
 		wallSound = EZ.addSound("stone1.wav");
 		diamondSound = EZ.addSound("glass1.wav");
 	}
 	
+	// function to count the total number of each type of block
 	static int[] countBlock() throws java.io.IOException { // this function is used only for counting number of elements
 		Scanner fileScanner = new Scanner(new FileReader("level.txt")); // load the .txt file that contains the level
 		int width = fileScanner.nextInt(); // initialize with width using the first integer of the first line...
@@ -66,17 +73,10 @@ public class roombrahRemastered {
 	
 	
 	public static void main(String[] args) throws java.io.IOException {
-		soundsEZ();
+		soundsEZ(); // load sounds
 		
-		int posX = 200;		//0	// Stores the x position of the probe
-		int posY = 100;			// Stores the y position of the probe	
 		int directionX = 1;		// Stores the x direction of the probe
 		int directionY = 1;		// Stores the y direction of the probe
-		int rotationAngle = 0;	// Stores the rotation angle of the probe
-		int saberX = 700/2;		// Stores X Position of the light saber 
-		int bounces = 0;		// Stores the number of times the probe has bounced off the lightsaber
-		
-		
 		
 		int countBlocks[] = countBlock(); // use the function to load the array into the main function
 		int countWall = countBlocks[0]; // from the array, assign the total number of wall blocks into a variable in the main
@@ -84,41 +84,36 @@ public class roombrahRemastered {
 		int countNull = countBlocks[2];
 		int countDiamondNull = countBlocks[3];
 
-		int diamondRemainder = countDiamond;
+		int diamondRemainder = countDiamond; // store the number of remaining diamonds
 		
-		Scanner fileScanner = new Scanner(new FileReader("level.txt"));
+		Scanner fileScanner = new Scanner(new FileReader("level.txt")); // load the level from a .txt file
 
-		int width = fileScanner.nextInt();
-		int height = fileScanner.nextInt();
-		String inputText = fileScanner.nextLine();
+		int width = fileScanner.nextInt(); // store the width from the first int from the loaded file
+		int height = fileScanner.nextInt(); // store the length from the second int from the loaded file
+		String inputText = fileScanner.nextLine(); // put the cursor at the start of the strings that will be the layout
 
-		EZ.initialize(width*32,height*32);
-		EZ.setBackgroundColor(new Color(0, 0,0)); 
+		EZ.initialize(width*32,height*32); // initialize an EZ canvas with the input width and height
+		EZ.setBackgroundColor(new Color(0, 0,0)); // set the background color to black
 		
-		EZImage probePicture = EZ.addImage("probe.png", 0,0);
-		probePicture.scaleBy(0.5); // originally at 0.3
+		// EZImage probePicture = EZ.addImage("probe.png", 0,0);
+		// probePicture.scaleBy(0.5); // originally at 0.3
 		
-		// System.out.println(probePicture.getWorldWidth());
-		// int countWall = countWallBlock();
+		roombrah roomba = new roombrah("probe.png",200,100); // create a roombrah object with the image and respective position
+		roomba.resize(); // resizes the roomba
 		
+		// initialize arrays for the blocks
 		EZImage[] wallBlock = new EZImage[countWall];
 		EZImage[] diamondBlock = new EZImage[countDiamond];
-		EZRectangle[] nullBlock = new EZRectangle[countNull];
-		EZRectangle[] diamondnullBlock = new EZRectangle[countDiamondNull];
+		// EZRectangle[] nullBlock = new EZRectangle[countNull]; // these arrays were used for the AI portion
+		// EZRectangle[] diamondnullBlock = new EZRectangle[countDiamondNull];
 		
-		
-
-		// System.out.println("Amount of wall blocks: " + countWall);
-		
-		for(int row = 0; row < height; row++){
+				
+		for(int row = 0; row < height; row++){ // for the rows and columns, make the layout with the respective blocks
 			inputText = fileScanner.nextLine();
-			// System.out.println(inputText);
 			
 			for (int column = 0; column < inputText.length(); column++){
-				
 				char ch = inputText.charAt(column);
-		
-				switch(ch){
+				switch(ch){ // switch the respective characters into EZ images, either walls or diamonds
 					case 'W':
 						wallBlock[counter] = EZ.addImage("wall.png",column*32+16,row*32+16);
 						// System.out.println("wall center: " + wallBlock[counter].getWorldXCenter() + ", " + wallBlock[counter].getWorldYCenter());
@@ -127,7 +122,7 @@ public class roombrahRemastered {
 						
 					case 'D':
 						diamondBlock[counterDiamond] = EZ.addImage("diamond.png", column*32+16, row*32+16);
-						diamondnullBlock[counterDiamondNull] = EZ.addRectangle(column*32+16, row*32+16, 32, 32, Color.blue, false);
+						// diamondnullBlock[counterDiamondNull] = EZ.addRectangle(column*32+16, row*32+16, 32, 32, Color.blue, false);
 						// EZ.addImage("diamond.png",column*32,row*32);
 						counterDiamond++;
 						counterDiamondNull++;
@@ -135,7 +130,7 @@ public class roombrahRemastered {
 
 					default:
 						// nullBlock[counterNull] = EZ.addRectangle(column*32+16, row*32+16, 32, 32, Color.gray, true);
-						diamondnullBlock[counterDiamondNull] = EZ.addRectangle(column*32+16, row*32+16, 32, 32, Color.blue, false);
+						// diamondnullBlock[counterDiamondNull] = EZ.addRectangle(column*32+16, row*32+16, 32, 32, Color.blue, false);
 						counterNull++;
 						counterDiamondNull++;
 						break;
@@ -156,20 +151,21 @@ public class roombrahRemastered {
 		while(diamondRemainder > 0){
 			counterCirc++;
 
-			posX = posX + directionX;
-			posY = posY + directionY;
+			int posX = roomba.getX() + directionX; // store position of roomba with the respective change in direction
+			int posY = roomba.getY() + directionY;
 			
-			probePicture.pullToFront();
-			if (counterCirc == 5) {
-				EZ.addCircle(probePicture.getWorldXCenter(), probePicture.getWorldYCenter(), probePicture.getWorldWidth(), probePicture.getWorldHeight(), new Color(224, 224, 224, 10), true).pushToBack();
+			// probePicture.pullToFront();
+			roomba.front(); // pull the image to the front
+			
+			if (counterCirc == 5) { // 
+				EZ.addCircle(roomba.getX(), roomba.getY(), roomba.getWidth(), roomba.getHeight(), new Color(224, 224, 224, 10), true).pushToBack(); // make a circle for every 5 move intervals of the roomba
 				counterCirc = 0;
 			}
 			
-			probePicture.translateTo(posX, posY); // Set the position of the probe.
+			roomba.translate(posX, posY); //probePicture.translateTo(posX, posY); // Set the position of the probe.
 			
-			
-			for (int i = 0; i < diamondBlock.length; i++) {
-				if (diamondBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter())) {
+			for (int i = 0; i < diamondBlock.length; i++) { // if a diamond is touched, play a sound and move the diamond off the layout
+				if (diamondBlock[i].isPointInElement(roomba.getX(), roomba.getY())) {
 					diamondSound.play();
 					diamondBlock[i].translateTo(0, 0);
 					diamondRemainder--;
@@ -178,31 +174,31 @@ public class roombrahRemastered {
 			}
 			
 
-			for (int i = 0; i < wallBlock.length; i++ ) {
+			for (int i = 0; i < wallBlock.length; i++ ) { // Collision interactions, if the roomba is touching (-1) a wall block, change the respective directions, but also account for if the roomba hits a corner perfectly
 				// diagonal collisions
-				if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter()+1, probePicture.getWorldYCenter()) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-1)) {
+				if (wallBlock[i].isPointInElement(roomba.getX()+1, roomba.getY()) && wallBlock[i].isPointInElement(roomba.getX(), roomba.getY()-1)) {
 					directionY = -directionY; // quadrant 1
 					directionX = -directionX;
 					wallSound.play();
-				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-1) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter()-1, probePicture.getWorldYCenter())) {
+				} else if (wallBlock[i].isPointInElement(roomba.getX(), roomba.getY()-1) && wallBlock[i].isPointInElement(roomba.getX()-1, roomba.getY())) {
 					directionY = -directionY; // quadrant 2
 					directionX = -directionX;
 					wallSound.play();
-				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter()-1, probePicture.getWorldYCenter()) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+1)) {
+				} else if (wallBlock[i].isPointInElement(roomba.getX()-1, roomba.getY()) && wallBlock[i].isPointInElement(roomba.getX(), roomba.getY()+1)) {
 					directionY = -directionY; // quadrant 3
 					directionX = -directionX;
 					wallSound.play();
-				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+1) && wallBlock[i].isPointInElement(probePicture.getWorldXCenter()+1, probePicture.getWorldYCenter())) {
+				} else if (wallBlock[i].isPointInElement(roomba.getX(), roomba.getY()+1) && wallBlock[i].isPointInElement(roomba.getX()+1, roomba.getY())) {
 					directionY = -directionY; //quadrant 4
 					directionX = -directionX;
 					wallSound.play();
 				}
 				
 				// top, bottom, left, right
-				else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter()+1, probePicture.getWorldYCenter()) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter()-1, probePicture.getWorldYCenter())) {
+				else if (wallBlock[i].isPointInElement(roomba.getX()+1, roomba.getY()) || wallBlock[i].isPointInElement(roomba.getX()-1,roomba.getY())) {
 					directionX = -directionX;
 					wallSound.play();
-				} else if (wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()+1) || wallBlock[i].isPointInElement(probePicture.getWorldXCenter(), probePicture.getWorldYCenter()-1)) {
+				} else if (wallBlock[i].isPointInElement(roomba.getX(), roomba.getY()+1) || wallBlock[i].isPointInElement(roomba.getX(), roomba.getY()-1)) {
 					directionY = -directionY;
 					wallSound.play();
 				}
@@ -218,7 +214,7 @@ public class roombrahRemastered {
 		}
 		
 		
-		applauseSound.play();
+		applauseSound.play(); // play a sound when all diamonds are collected
 	}
 }
 

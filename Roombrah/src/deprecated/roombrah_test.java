@@ -1,8 +1,13 @@
+package deprecated;
 import java.awt.Color;
 import java.io.FileReader;
 import java.util.Scanner;
 // import java.util.Arrays;
 // import java.util.Collections;
+
+import EZ;
+import EZImage;
+import EZInteraction;
 
 
 // STILL UNDER DEVELOPMENT AS OF 10/15/2017, NOT USED FOR MILESTONE 1.

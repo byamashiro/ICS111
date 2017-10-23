@@ -1,10 +1,11 @@
+package deprecated;
 
-public class Island {
+public class roombaC {
 	String name;
 	int pop;
 	float popRho;
 
-	public Island(String a, int b, float c) {
+	public roombaC(String a, int b, float c) {
 		name = a;
 		pop = b;
 		popRho = c;
