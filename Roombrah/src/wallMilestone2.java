@@ -92,7 +92,7 @@ public class wallMilestone2 {
 		// EZImage probePicture = EZ.addImage("probe.png", 0,0);
 		// probePicture.scaleBy(0.5); // originally at 0.3
 		
-		roombrah roomba = new roombrah("probe.png",200,100); // create a roombrah object with the image and respective position
+		Roombrah roomba = new Roombrah("probe.png",200,100); // create a roombrah object with the image and respective position
 		roomba.resize(); // resizes the roomba
 		
 		// initialize arrays for the blocks
@@ -156,7 +156,7 @@ public class wallMilestone2 {
 				counterCirc = 0;
 			}
 			
-			roomba.translate(posX, posY); //probePicture.translateTo(posX, posY); // Set the position of the probe.
+			roomba.translate(directionX, directionY); // roomba.translate(posX, posY); //probePicture.translateTo(posX, posY); // Set the position of the probe.
 			
 			for (int i = 0; i < diamondBlock.length; i++) { // if a diamond is touched, play a sound and move the diamond off the layout
 				if (diamondBlock[i].isPointInElement(roomba.getX(), roomba.getY())) {

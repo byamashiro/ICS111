@@ -12,11 +12,6 @@ import java.util.Arrays;
 import org.apache.commons.*;
 import org.apache.commons.lang3.ArrayUtils;
 
-import EZ;
-import EZImage;
-import EZRectangle;
-import EZSound;
-import roombrah; 
 
 
 // STILL UNDER DEVELOPMENT AS OF 10/15/2017, NOT USED FOR MILESTONE 1.
@@ -76,9 +71,9 @@ public class roombrahRemastered_withoutclass {
 	public static void main(String[] args) throws java.io.IOException {
 		soundsEZ();
 		
-		// int posX = 200;		//0	// Stores the x position of the probe
-		// int posY = 100;			// Stores the y position of the probe	
-		roombrah roomba = new roombrah("probe.png", 200, 100);
+		int posX = 200;		//0	// Stores the x position of the probe
+		int posY = 100;			// Stores the y position of the probe	
+		// roombrah roomba = new roombrah("probe.png", 200, 100);
 		int directionX = 1;		// Stores the x direction of the probe
 		int directionY = 1;		// Stores the y direction of the probe
 		int rotationAngle = 0;	// Stores the rotation angle of the probe
@@ -104,8 +99,8 @@ public class roombrahRemastered_withoutclass {
 		EZ.initialize(width*32,height*32);
 		EZ.setBackgroundColor(new Color(0, 0,0)); 
 		
-		// EZImage probePicture = EZ.addImage("probe.png", 0,0);
-		// probePicture.scaleBy(0.5); // originally at 0.3
+		EZImage probePicture = EZ.addImage("probe.png", 0,0);
+		probePicture.scaleBy(0.5); // originally at 0.3
 		
 		
 		EZImage[] wallBlock = new EZImage[countWall];
@@ -163,8 +158,8 @@ public class roombrahRemastered_withoutclass {
 		while(diamondRemainder > 0){
 			counterCirc++;
 
-			int posX = roombrah.getX() + directionX;
-			int posY = roombrah.getY() + directionY;
+			posX = posX + directionX;
+			posY = posX + directionY;
 			
 			probePicture.pullToFront();
 			if (counterCirc == 5) {

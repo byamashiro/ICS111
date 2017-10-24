@@ -1,5 +1,6 @@
+package deprecated;
 
-public class Roombrah {
+public class roombrah {
 	int posX;		//0	// Stores the x position of the probe
 	int posY;			// Stores the y position of the probe
 	EZImage img;
@@ -8,7 +9,7 @@ public class Roombrah {
 	
 	
 
-	public Roombrah(String file_name, int x, int y) {
+	public roombrah(String file_name, int x, int y) {
 		img = EZ.addImage(file_name, x, y);
 	}
 	

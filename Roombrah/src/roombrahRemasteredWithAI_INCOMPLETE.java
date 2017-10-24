@@ -166,6 +166,7 @@ public class roombrahRemasteredWithAI_INCOMPLETE {
 		int clickX = 0;
 		int clickY = 0;
 		
+		
 
 			
 		while(diamondRemainder > 0) { // AI
@@ -179,6 +180,8 @@ public class roombrahRemasteredWithAI_INCOMPLETE {
 				counterCirc = 0;
 			}
 			
+			
+			// probePicture.translateBy(directionX, directionY);
 			probePicture.translateTo(posX, posY); // Set the position of the probe.
 			
 			
