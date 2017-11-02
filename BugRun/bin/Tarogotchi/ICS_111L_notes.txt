@@ -1,0 +1,125 @@
+# ICS 111L
+
+## (08/24/2017)
+
+- Floor, ceiling, round, truncate
+	- Round: Nearest integer upward,          			6.7 -> 7,		99.09 -> 99, 		-6.2 -> -6
+	- Floor: Nearest integer downward,        			6.7 -> 6,		99.09 -> 99, 		-6.2 -> -7
+	- Ceiling: Nearest integer upward,        			6.7 -> 7,		99.09 -> 100,		-6.2 -> -6
+	- Truncating: remove digits after decimal,			6.7 -> 6,		99.09 -> 99, 		-6.2 -> -6
+
+
+- Powers & roots
+	- Powers
+	3 ^ 4 = 3 * 3 * 3 * 3 = 81
+	4 ^ 2 = 16
+	7 ^ 2 = 49
+
+	- Roots
+	sqrt(4) = 2
+	sqrt(49) = 7
+
+
+- Remainders, quotients, and modulo
+	- Quotients
+	13/5 = 2R3
+	64/8 = 8R0
+	33/2 = 16R1
+	5/10 = 0R5
+	2017/10 = 201R7
+
+	- Modulo - The remainder after division
+	13 % 5 = 3
+	64 % 8 = 0
+	33 % 2 = 1 # odds will have a modulo of 1
+	34 % 2 = 0 # evens will have a modulo of 0
+	35 % 2 = 1
+	2017 % 10 = 7
+	5 % 8 = 5
+	1984129 % 2 = 1 # will be on quiz
+
+
+- Trig
+	- All angles add up to 180deg
+	- SOH CAH TOA
+	sin(theta) = opposite / hypotenuse
+	cos(theta) = adjacent / hypotenuse
+	tan(theta) = opposite / adjacent
+
+	A = cos(theta)
+	B = sin(theta)
+
+	- Pythagorean on unit circle
+	A^2 + B^2 = 1
+	[cos(theta)]^2 + [sin(theta)]^2 = 1 # trig identity
+
+	- 45-45-90 Triangle
+	x ~ cos(theta)
+	y ~ sin(theta)
+	[cos(45)]^2 + [sin(45)]^2 = 1
+	- 2 * [cos(45)]^2 = 1
+	- [cos(45)]^2 = 1/2
+	- [cos(45)] = sqrt(1/2) = sqrt(2)/2
+
+
+
+- Graphing & plots
+	(-1, 3) left one, up three
+	(5, 1) right five, up one
+	- rectangle
+		(-1, 1)
+		(5, 3)
+
+	Computers have (0, 0) at the top left
+
+	Have two points, slope-intercept[y = mx + b]/point-slope [y - y_1 = m(x - x_1)] formula
+	- ratio over rise over run
+	(1, 1) -> (3, 6)
+	rise = 5
+	run = 2
+	slope(m) = rise / run = 5 / 2
+
+	y - 6 = (5/2)(x - 3)
+	y = (5/2)x - (15/2) + (12/2)
+
+
+	y = (5/2)x - (3/2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

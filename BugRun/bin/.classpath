@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry excluding="Lab5/src/|ClickAndPlay/src/|InClass/src/|examples/Saberbouncer/src/|Mine/src/|new_project/src/|Saberbouncer/src/|Tarogotchi/Deprecated/|Pong/src/|Lab6/src/|Roombrah/src/|BugRun/src/|Tarogotchi/src/" kind="src" path=""/>
+	<classpathentry kind="src" path="BugRun/src"/>
+	<classpathentry kind="src" path="ClickAndPlay/src"/>
+	<classpathentry kind="src" path="examples/Saberbouncer/src"/>
+	<classpathentry kind="src" path="InClass/src"/>
+	<classpathentry kind="src" path="Lab5/src"/>
+	<classpathentry kind="src" path="Lab6/src"/>
+	<classpathentry kind="src" path="Mine/src"/>
+	<classpathentry kind="src" path="new_project/src"/>
+	<classpathentry kind="src" path="Pong/src"/>
+	<classpathentry kind="src" path="Roombrah/src"/>
+	<classpathentry kind="src" path="Saberbouncer/src"/>
+	<classpathentry kind="src" path="Tarogotchi/Deprecated"/>
+	<classpathentry kind="src" path="Tarogotchi/src"/>
+	<classpathentry kind="output" path="BugRun/bin"/>
+</classpath>

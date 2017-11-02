@@ -16,7 +16,7 @@ public class scope1 {
 		foo.set2();
 		foo.print();
 		
-		foo.set3(5);;
+		foo.set3(5);
 		foo.print();
 		
 		foo.set4(6);
