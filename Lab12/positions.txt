@@ -1,0 +1,6 @@
+bats.png 748 146
+cat.png 221 421
+ghost.png 530 334
+pumpkin.png 762 473
+spider.png 890 305
+witch.png 157 172
