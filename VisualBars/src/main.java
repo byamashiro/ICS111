@@ -8,6 +8,20 @@ public class main {
 		
 		visualBar bar = new visualBar();
 		bar.outlineBars();
+		
+		/*
+		for (int i=0; i<100; i++) {
+			bar.hpChange(i);
+			EZ.refreshScreen();
+		}
+		*/
+		int i = 0;
+		while(EZInteraction.wasKeyPressed('a') == false) {
+			bar.hpChange(i);
+			i++;
+			EZ.refreshScreen();
+		}
+		
 
 	}
 
