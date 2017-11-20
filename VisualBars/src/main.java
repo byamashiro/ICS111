@@ -17,8 +17,10 @@ public class main {
 		*/
 		int i = 0;
 		while(EZInteraction.wasKeyPressed('a') == false) {
-			bar.hpChange(i);
+			bar.hpChange(i); // replace "i" with health points
+			
 			i++;
+			
 			EZ.refreshScreen();
 		}
 		
