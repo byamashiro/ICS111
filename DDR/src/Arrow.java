@@ -5,7 +5,7 @@ public class Arrow {
 	private EZImage arrow;
 	private int life;
 	
-	public Arrow(int spe, String dir) {
+	public Arrow(int spe, String dir) {	//Spawns arrow with a given speed and direction
 		speed = spe;
 		switch(dir) {
 		case "left":
@@ -26,10 +26,10 @@ public class Arrow {
 	
 	public void move() {
 		arrow.translateBy(0, -speed);
-		increaseLife();
-	}
+		increaseLife();		//Increases life of the arrow to keep track of how long it's been alive which will then be used to keep track of
+	}						//where it is on the screen
 	
-	//Perfect score when life is 74
+	
 	
 	public int returnSpeed() {
 		return speed;

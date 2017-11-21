@@ -1,4 +1,5 @@
 /Arrow.class
+/ArrowDetect.class
 /DDRMain.class
 /EZ$1.class
 /EZ.class
@@ -12,5 +13,6 @@
 /EZRectangle.class
 /EZSound.class
 /EZText.class
-/InputDetect.class
 /NoteSpawner.class
+/Sounds.class
+/VisualBar.class
