@@ -5,7 +5,7 @@ public class ArrowDetect {
 	}
 	public String detectMiss(int life) {
 		if(life>180) {
-			DDRMain.hp -= 20;
+			DDRMain.hp += 20; // +=
 			return "miss";
 		} else return "none";
 	}
